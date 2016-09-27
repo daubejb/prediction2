@@ -33,10 +33,12 @@ package com.daubedesign.prediction2;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,11 +58,10 @@ import static android.widget.Toast.makeText;
 public class Prediction2Activity extends Activity implements
         RecognitionListener {
 
+    /* Playing card picture holder */
+    private ImageView cardImageView;
     /* Named searches allow to quickly reconfigure the decoder */
     private static final String KWS_SEARCH = "wakeup";
-    private static final String FORECAST_SEARCH = "forecast";
-    private static final String DIGITS_SEARCH = "digits";
-    private static final String PHONE_SEARCH = "phones";
     private static final String MENU_SEARCH = "menu";
 
     /* Keyword we are looking for to activate menu */
@@ -80,13 +81,11 @@ public class Prediction2Activity extends Activity implements
         captions = new HashMap<String, Integer>();
         captions.put(KWS_SEARCH, R.string.kws_caption);
         captions.put(MENU_SEARCH, R.string.menu_caption);
-        captions.put(DIGITS_SEARCH, R.string.digits_caption);
-        captions.put(PHONE_SEARCH, R.string.phone_caption);
-        captions.put(FORECAST_SEARCH, R.string.forecast_caption);
         setContentView(R.layout.main);
         ((TextView) findViewById(R.id.caption_text))
                 .setText("Preparing the recognizer");
-
+        cardImageView = (ImageView) findViewById(R.id.card_image_view);
+        cardImageView.setImageResource(R.drawable.playing_card_back);
         // Check if user has given permission to record audio
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO);
         if (permissionCheck == PackageManager.PERMISSION_DENIED) {
@@ -161,12 +160,6 @@ public class Prediction2Activity extends Activity implements
         String text = hypothesis.getHypstr();
         if (text.equals(KEYPHRASE))
             switchSearch(MENU_SEARCH);
-        else if (text.equals(DIGITS_SEARCH))
-            switchSearch(DIGITS_SEARCH);
-        else if (text.equals(PHONE_SEARCH))
-            switchSearch(PHONE_SEARCH);
-        else if (text.equals(FORECAST_SEARCH))
-            switchSearch(FORECAST_SEARCH);
         else
             ((TextView) findViewById(R.id.result_text)).setText(text);
     }
@@ -180,6 +173,59 @@ public class Prediction2Activity extends Activity implements
         if (hypothesis != null) {
             String text = hypothesis.getHypstr();
             makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+
+            if (text.contains("ace") && text.contains("spades"))        { cardImageView.setImageResource(R.drawable.spades_a); }
+            else if (text.contains("two") && text.contains("spades"))   { cardImageView.setImageResource(R.drawable.spades_2); }
+            else if (text.contains("three") && text.contains("spades")) { cardImageView.setImageResource(R.drawable.spades_3); }
+            else if (text.contains("four") && text.contains("spades"))  { cardImageView.setImageResource(R.drawable.spades_4); }
+            else if (text.contains("five") && text.contains("spades"))  { cardImageView.setImageResource(R.drawable.spades_5); }
+            else if (text.contains("six") && text.contains("spades"))   { cardImageView.setImageResource(R.drawable.spades_6); }
+            else if (text.contains("seven") && text.contains("spades")) { cardImageView.setImageResource(R.drawable.spades_7); }
+            else if (text.contains("eight") && text.contains("spades")) { cardImageView.setImageResource(R.drawable.spades_8); }
+            else if (text.contains("nine") && text.contains("spades"))  { cardImageView.setImageResource(R.drawable.spades_9); }
+            else if (text.contains("ten") && text.contains("spades"))   { cardImageView.setImageResource(R.drawable.spades_10); }
+            else if (text.contains("jack") && text.contains("spades"))  { cardImageView.setImageResource(R.drawable.spades_j); }
+            else if (text.contains("queen") && text.contains("spades")) { cardImageView.setImageResource(R.drawable.spades_q); }
+            else if (text.contains("king") && text.contains("spades"))  { cardImageView.setImageResource(R.drawable.spades_k); }
+            else if (text.contains("ace") && text.contains("clubs"))    { cardImageView.setImageResource(R.drawable.clubs_a); }
+            else if (text.contains("two") && text.contains("clubs"))    { cardImageView.setImageResource(R.drawable.clubs_2); }
+            else if (text.contains("three") && text.contains("clubs"))  { cardImageView.setImageResource(R.drawable.clubs_3); }
+            else if (text.contains("four") && text.contains("clubs"))   { cardImageView.setImageResource(R.drawable.clubs_4); }
+            else if (text.contains("five") && text.contains("clubs"))   { cardImageView.setImageResource(R.drawable.clubs_5); }
+            else if (text.contains("six") && text.contains("clubs"))    { cardImageView.setImageResource(R.drawable.clubs_6); }
+            else if (text.contains("seven") && text.contains("clubs"))  { cardImageView.setImageResource(R.drawable.clubs_7); }
+            else if (text.contains("eight") && text.contains("clubs"))  { cardImageView.setImageResource(R.drawable.clubs_8); }
+            else if (text.contains("nine") && text.contains("clubs"))   { cardImageView.setImageResource(R.drawable.clubs_9); }
+            else if (text.contains("ten") && text.contains("clubs"))    { cardImageView.setImageResource(R.drawable.clubs_10); }
+            else if (text.contains("jack") && text.contains("clubs"))   { cardImageView.setImageResource(R.drawable.clubs_j); }
+            else if (text.contains("queen") && text.contains("clubs"))  { cardImageView.setImageResource(R.drawable.clubs_q); }
+            else if (text.contains("king") && text.contains("clubs"))   { cardImageView.setImageResource(R.drawable.clubs_k); }
+            else if (text.contains("ace") && text.contains("hearts"))   { cardImageView.setImageResource(R.drawable.hearts_a); }
+            else if (text.contains("two") && text.contains("hearts"))   { cardImageView.setImageResource(R.drawable.hearts_2); }
+            else if (text.contains("three") && text.contains("hearts")) { cardImageView.setImageResource(R.drawable.hearts_3); }
+            else if (text.contains("four") && text.contains("hearts"))  { cardImageView.setImageResource(R.drawable.hearts_4); }
+            else if (text.contains("five") && text.contains("hearts"))  { cardImageView.setImageResource(R.drawable.hearts_5); }
+            else if (text.contains("six") && text.contains("hearts"))   { cardImageView.setImageResource(R.drawable.hearts_6); }
+            else if (text.contains("seven") && text.contains("hearts")) { cardImageView.setImageResource(R.drawable.hearts_7); }
+            else if (text.contains("eight") && text.contains("hearts")) { cardImageView.setImageResource(R.drawable.hearts_8); }
+            else if (text.contains("nine") && text.contains("hearts"))  { cardImageView.setImageResource(R.drawable.hearts_9); }
+            else if (text.contains("ten") && text.contains("hearts"))   { cardImageView.setImageResource(R.drawable.hearts_10); }
+            else if (text.contains("jack") && text.contains("hearts"))  { cardImageView.setImageResource(R.drawable.hearts_j); }
+            else if (text.contains("queen") && text.contains("hearts")) { cardImageView.setImageResource(R.drawable.hearts_q); }
+            else if (text.contains("king") && text.contains("hearts"))  { cardImageView.setImageResource(R.drawable.hearts_k); }
+            else if (text.contains("ace") && text.contains("diamonds")) { cardImageView.setImageResource(R.drawable.diamonds_a); }
+            else if (text.contains("two") && text.contains("diamonds")) { cardImageView.setImageResource(R.drawable.diamonds_2); }
+            else if (text.contains("three") && text.contains("diamonds"))   { cardImageView.setImageResource(R.drawable.diamonds_3); }
+            else if (text.contains("four") && text.contains("diamonds"))    { cardImageView.setImageResource(R.drawable.diamonds_4); }
+            else if (text.contains("five") && text.contains("diamonds"))    { cardImageView.setImageResource(R.drawable.diamonds_5); }
+            else if (text.contains("six") && text.contains("diamonds"))     { cardImageView.setImageResource(R.drawable.diamonds_6); }
+            else if (text.contains("seven") && text.contains("diamonds"))   { cardImageView.setImageResource(R.drawable.diamonds_7); }
+            else if (text.contains("eight") && text.contains("diamonds"))   { cardImageView.setImageResource(R.drawable.diamonds_8); }
+            else if (text.contains("nine") && text.contains("diamonds"))    { cardImageView.setImageResource(R.drawable.diamonds_9); }
+            else if (text.contains("ten") && text.contains("diamonds"))     { cardImageView.setImageResource(R.drawable.diamonds_10); }
+            else if (text.contains("jack") && text.contains("diamonds"))    { cardImageView.setImageResource(R.drawable.diamonds_j); }
+            else if (text.contains("queen") && text.contains("diamonds"))   { cardImageView.setImageResource(R.drawable.diamonds_q); }
+            else if (text.contains("king") && text.contains("diamonds"))    { cardImageView.setImageResource(R.drawable.diamonds_k); }
         }
     }
 
@@ -203,7 +249,7 @@ public class Prediction2Activity extends Activity implements
         if (searchName.equals(KWS_SEARCH))
             recognizer.startListening(searchName);
         else
-            recognizer.startListening(searchName, 10000);
+            recognizer.startListening(searchName, 30000);
 
         String caption = getResources().getString(captions.get(searchName));
         ((TextView) findViewById(R.id.caption_text)).setText(caption);
@@ -236,17 +282,6 @@ public class Prediction2Activity extends Activity implements
         File menuGrammar = new File(assetsDir, "menu.gram");
         recognizer.addGrammarSearch(MENU_SEARCH, menuGrammar);
 
-        // Create grammar-based search for digit recognition
-        File digitsGrammar = new File(assetsDir, "digits.gram");
-        recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
-
-        // Create language model search
-        File languageModel = new File(assetsDir, "weather.dmp");
-        recognizer.addNgramSearch(FORECAST_SEARCH, languageModel);
-
-        // Phonetic search
-        File phoneticModel = new File(assetsDir, "en-phone.dmp");
-        recognizer.addAllphoneSearch(PHONE_SEARCH, phoneticModel);
     }
 
     @Override
