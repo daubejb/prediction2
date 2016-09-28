@@ -11,7 +11,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name="com.daubedesign.prediction2.Prediction2Activity"
             android:label="@string/app_name"
@@ -20,7 +19,8 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name="com.daubedesign.prediction2.SplashActivity"
+        <activity
+            android:name="com.daubedesign.prediction2.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,5 +28,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.daubedesign.prediction2.SelectCardActivity"
+            android:label="@string/select_card_title"
+            android:parentActivityName="com.daubedesign.prediction2.Prediction2Activity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.daubedesign.prediction2.Prediction2Activity" />
+        </activity>
     </application>
+
 </manifest>

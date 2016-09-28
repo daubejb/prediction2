@@ -6,4 +6,6 @@
     <string name="menu_caption">Prediction</string>
     <string name="card_image_view_description">The back of a playing card</string>
     <string name="prediction_activity_title">Card Prediction</string>
+    <string name="select_card_title">Select your prediction</string>
+    <string name="select_card_activity_title">Select your prediction</string>
 </resources>

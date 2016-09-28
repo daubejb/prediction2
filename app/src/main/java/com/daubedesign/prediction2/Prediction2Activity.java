@@ -32,6 +32,7 @@ package com.daubedesign.prediction2;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.Image;
 import android.os.AsyncTask;
@@ -103,7 +104,8 @@ public class Prediction2Activity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(Prediction2Activity.this, "You clicked on ImageView", Toast.LENGTH_LONG).show();
+                Intent startActivityIntent = new Intent(getApplicationContext(),SelectCardActivity.class);
+                startActivity(startActivityIntent);
 
             }
         });

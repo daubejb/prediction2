@@ -10,19 +10,10 @@
         android:title="@string/prediction_activity_title"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        app:collapseContentDescription="@string/abc_toolbar_collapse_description"
-        app:collapseIcon="?attr/homeAsUpIndicator"
-        app:contentInsetStart="16dp"
-        app:contentInsetStartWithNavigation="@dimen/abc_action_bar_content_inset_with_nav"
-        app:maxButtonHeight="@dimen/abc_action_bar_default_height_material"
-        android:minHeight="?attr/actionBarSize"
-        tools:ignore="PrivateResource"
-        android:elevation="4dp" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <TextView
         android:id="@+id/caption_text"
