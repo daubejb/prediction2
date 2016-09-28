@@ -21,7 +21,8 @@
         </activity>
         <activity
             android:name="com.daubedesign.prediction2.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +32,7 @@
         <activity
             android:name="com.daubedesign.prediction2.SelectCardActivity"
             android:label="@string/select_card_title"
+            android:screenOrientation="portrait"
             android:parentActivityName="com.daubedesign.prediction2.Prediction2Activity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
