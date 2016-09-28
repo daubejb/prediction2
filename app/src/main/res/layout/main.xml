@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/prediction_linear_layout">
     <android.support.v7.widget.Toolbar
         android:id="@+id/prediction_toolbar"
         android:title="@string/prediction_activity_title"
@@ -22,7 +23,8 @@
         android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:typeface="sans"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_marginTop="10dp" />
 
     <ImageView
         android:layout_width="wrap_content"
