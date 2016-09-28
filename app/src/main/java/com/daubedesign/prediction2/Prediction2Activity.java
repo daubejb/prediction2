@@ -38,6 +38,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +57,7 @@ import edu.cmu.pocketsphinx.demo.R;
 
 import static android.widget.Toast.makeText;
 
-public class Prediction2Activity extends Activity implements
+public class Prediction2Activity extends AppCompatActivity implements
         RecognitionListener {
 
     /* Playing card picture holder */
@@ -82,6 +84,9 @@ public class Prediction2Activity extends Activity implements
         captions.put(KWS_SEARCH, R.string.kws_caption);
         captions.put(MENU_SEARCH, R.string.menu_caption);
         setContentView(R.layout.main);
+        Toolbar predictionToolbar = (Toolbar) findViewById(R.id.prediction_toolbar);
+        setSupportActionBar(predictionToolbar);
+        getSupportActionBar().setTitle(R.string.prediction_activity_title);
         ((TextView) findViewById(R.id.caption_text))
                 .setText("Preparing the recognizer");
         cardImageView = (ImageView) findViewById(R.id.card_image_view);
