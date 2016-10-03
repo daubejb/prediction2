@@ -33,6 +33,7 @@ package com.daubedesign.prediction2;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.Image;
 import android.os.AsyncTask;
@@ -58,28 +59,39 @@ import edu.cmu.pocketsphinx.SpeechRecognizerSetup;
 import edu.cmu.pocketsphinx.demo.R;
 
 import static android.widget.Toast.makeText;
+import static com.daubedesign.prediction2.SelectCardActivity.cardHasBeenClicked;
 
 public class Prediction2Activity extends AppCompatActivity implements
         RecognitionListener {
 
+    /* preference to store data */
+    public static final String PREFS_NAME = "MyPrefsFile";
+    public static SharedPreferences settings = null;
+
     /* Playing card picture holder */
-    private ImageView cardImageView;
+    private static ImageView cardImageView;
+
+
     /* Named searches allow to quickly reconfigure the decoder */
     private static final String KWS_SEARCH = "wakeup";
     private static final String MENU_SEARCH = "menu";
-
     /* Keyword we are looking for to activate menu */
     private static final String KEYPHRASE = "but you selected";
-
     /* Used to handle permission request */
     private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
-
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
 
+    public static void setCardImageView(int image) {
+
+        cardImageView.setImageResource(image);
+    }
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
+        // Restore preference
+
+        settings = getSharedPreferences(PREFS_NAME, 0);
 
         // Prepare the data for UI
         captions = new HashMap<String, Integer>();
@@ -92,13 +104,6 @@ public class Prediction2Activity extends AppCompatActivity implements
         ((TextView) findViewById(R.id.caption_text))
                 .setText("Preparing the recognizer");
         cardImageView = (ImageView) findViewById(R.id.card_image_view);
-        cardImageView.setImageResource(R.drawable.playing_card_back);
-        // Check if user has given permission to record audio
-        int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO);
-        if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, PERMISSIONS_REQUEST_RECORD_AUDIO);
-            return;
-        }
         cardImageView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -109,6 +114,20 @@ public class Prediction2Activity extends AppCompatActivity implements
 
             }
         });
+
+        if (!cardHasBeenClicked) {
+            cardImageView.setImageResource(R.drawable.playing_card_back);
+        }
+        if (cardHasBeenClicked) {
+            int playingCard = settings.getInt("selectedCard",0);
+            cardImageView.setImageResource(playingCard);
+        }
+        // Check if user has given permission to record audio
+        int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO);
+        if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, PERMISSIONS_REQUEST_RECORD_AUDIO);
+            return;
+        }
 
         runRecognizerSetup();
     }
@@ -163,6 +182,7 @@ public class Prediction2Activity extends AppCompatActivity implements
             recognizer.cancel();
             recognizer.shutdown();
         }
+
     }
 
     /**

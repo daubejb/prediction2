@@ -1,0 +1,26 @@
+TASK com.daubedesign.prediction2 id=811
+  ACTIVITY com.daubedesign.prediction2/.Prediction2Activity 302d3e pid=10033
+    Local FragmentActivity 5d3da9e State:
+      mCreated=truemResumed=true mStopped=false mReallyStopped=false
+      mLoadersStarted=true
+    FragmentManager misc state:
+      mHost=android.support.v4.app.FragmentActivity$HostCallbacks@83e67
+      mContainer=android.support.v4.app.FragmentActivity$HostCallbacks@83e67
+      mCurState=5 mStateSaved=false mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.DecorView{1302414 V.E..... ... 0,0-1080,1920}
+        android.widget.LinearLayout{7f5a4bd V.E..... ... 0,0-1080,1794}
+          android.view.ViewStub{2f6eab2 G.E..... ... 0,0-0,0 #10203e8 android:id/action_mode_bar_stub}
+          android.widget.FrameLayout{6505a03 V.E..... ... 0,63-1080,1794}
+            android.support.v7.widget.FitWindowsLinearLayout{cf56d80 V.E..... ... 0,0-1080,1731 #7f0a0040 app:id/action_bar_root}
+              android.support.v7.widget.ViewStubCompat{cdccfb9 G.E..... ... 0,0-0,0 #7f0a0041 app:id/action_mode_bar_stub}
+              android.support.v7.widget.ContentFrameLayout{364fffe V.E..... ... 0,0-1080,1731 #1020002 android:id/content}
+                android.widget.LinearLayout{474935f V.E..... ... 0,0-1080,1731 #7f0a0056 app:id/prediction_linear_layout}
+                  android.support.v7.widget.Toolbar{503e1ac V.E..... ... 0,0-1080,147 #7f0a0057 app:id/prediction_toolbar}
+                    android.widget.TextView{871ae75 V.ED.... ... 42,38-412,109}
+                    android.support.v7.widget.ActionMenuView{f0d1e0a V.E..... ... 1080,0-1080,147}
+                  android.support.v7.widget.AppCompatTextView{d79067b V.ED.... ... 80,173-999,453 #7f0a0058 app:id/caption_text}
+                  android.support.v7.widget.AppCompatImageView{aa36c98 V.ED..C. ... 0,453-1080,1465 #7f0a0059 app:id/card_image_view}
+                  android.support.v7.widget.AppCompatTextView{83bbcf1 V.ED.... ... 0,1465-1080,1731 #7f0a005a app:id/result_text}
+        android.view.View{86710d6 V.ED.... ... 0,1794-1080,1920 #1020030 android:id/navigationBarBackground}
+        android.view.View{6878f57 V.ED.... ... 0,0-1080,63 #102002f android:id/statusBarBackground}
