@@ -43,6 +43,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +59,7 @@ import edu.cmu.pocketsphinx.SpeechRecognizer;
 import edu.cmu.pocketsphinx.SpeechRecognizerSetup;
 import edu.cmu.pocketsphinx.demo.R;
 
+import static android.R.attr.button;
 import static android.widget.Toast.makeText;
 import static com.daubedesign.prediction2.SelectCardActivity.cardHasBeenClicked;
 
@@ -70,6 +72,7 @@ public class Prediction2Activity extends AppCompatActivity implements
 
     /* Playing card picture holder */
     private static ImageView cardImageView;
+    private Button resetButton;
 
 
     /* Named searches allow to quickly reconfigure the decoder */
@@ -81,11 +84,8 @@ public class Prediction2Activity extends AppCompatActivity implements
     private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
+    private Boolean recogIsActive = false;
 
-    public static void setCardImageView(int image) {
-
-        cardImageView.setImageResource(image);
-    }
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -104,14 +104,35 @@ public class Prediction2Activity extends AppCompatActivity implements
         ((TextView) findViewById(R.id.caption_text))
                 .setText("Preparing the recognizer");
         cardImageView = (ImageView) findViewById(R.id.card_image_view);
+        resetButton = (Button) findViewById(R.id.reset_prediction_button);
         cardImageView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
 
                 Intent startActivityIntent = new Intent(getApplicationContext(),SelectCardActivity.class);
                 startActivity(startActivityIntent);
+            }
+        });
 
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                cardImageView.setImageResource(R.drawable.playing_card_back);
+                cardHasBeenClicked = false;
+                ((TextView) findViewById(R.id.caption_text))
+                        .setText(R.string.kws_caption);
+            }
+        });
+
+        resetButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (recogIsActive) {
+                    recogIsActive = false;
+                    recognizer.stop();
+                } else {
+                    switchSearch(KWS_SEARCH);
+                }
+                return true;
             }
         });
 
@@ -142,6 +163,7 @@ public class Prediction2Activity extends AppCompatActivity implements
                     Assets assets = new Assets(Prediction2Activity.this);
                     File assetDir = assets.syncAssets();
                     setupRecognizer(assetDir);
+                    recogIsActive = true;
                 } catch (IOException e) {
                     return e;
                 }
