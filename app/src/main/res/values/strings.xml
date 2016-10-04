@@ -10,4 +10,5 @@
     <string name="select_card_title">Select your prediction</string>
     <string name="select_card_activity_title">Select your prediction</string>
     <string name="reset_prediction_textViewText">RESET PREDICTION</string>
+    <string name="reveal_prediction_buttonText">REVEAL PREDICTION</string>
 </resources>

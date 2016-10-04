@@ -16,29 +16,30 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <Button
-        android:text="@string/reset_prediction_textViewText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/reset_prediction_button"
-        android:layout_gravity="center"/>
-
     <TextView
         android:id="@+id/caption_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:typeface="sans"
         android:layout_weight="1"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center" />
+
+    <Button
+        android:text="@string/reveal_prediction_buttonText"
+        android:layout_width="wrap_content"
+        android:id="@+id/reveal_prediction_button"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center" />
 
     <ImageView
         android:layout_height="0dp"
         android:id="@+id/card_image_view"
         android:contentDescription="@string/card_image_view_description"
         android:layout_weight="5"
-        android:layout_width="match_parent" />
+        android:layout_width="wrap_content" />
 
     <TextView
         android:id="@+id/result_text"
@@ -46,5 +47,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_weight="1" />
+
+    <Button
+        android:text="@string/reset_prediction_textViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/reset_prediction_button"
+        android:layout_weight="1"
+        android:layout_gravity="center" />
 
 </LinearLayout>
