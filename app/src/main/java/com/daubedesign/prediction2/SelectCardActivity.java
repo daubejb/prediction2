@@ -1,11 +1,15 @@
 package com.daubedesign.prediction2;
 
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 import edu.cmu.pocketsphinx.demo.R;
 
@@ -15,6 +19,7 @@ import static com.daubedesign.prediction2.Prediction2Activity.settings;
 public class SelectCardActivity extends AppCompatActivity {
 
     public static boolean cardHasBeenClicked = false;
+    private View previousCard = (View) null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +35,18 @@ public class SelectCardActivity extends AppCompatActivity {
         cardSelectionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
+
+                v.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+
                 Toast.makeText(SelectCardActivity.this, "" + position,
                         Toast.LENGTH_SHORT).show();
+                if (cardHasBeenClicked) {
+                    previousCard.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+                }
+
+                previousCard = v;
                 switch (position) {
+
                     case 0: settings.edit().putInt("selectedCard", R.drawable.clubs_a).commit(); cardHasBeenClicked = true; break;
                     case 1: settings.edit().putInt("selectedCard", R.drawable.hearts_a).commit(); cardHasBeenClicked = true; break;
                     case 2: settings.edit().putInt("selectedCard", R.drawable.spades_a).commit(); cardHasBeenClicked = true; break;
@@ -88,6 +102,7 @@ public class SelectCardActivity extends AppCompatActivity {
                     default: settings.edit().putInt("selectedCard", R.drawable.playing_card_back).commit();
 
                 }
+
             }
         });
     }
