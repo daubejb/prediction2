@@ -38,8 +38,8 @@ public class SelectCardActivity extends AppCompatActivity {
 
                 v.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
 
-                Toast.makeText(SelectCardActivity.this, "" + position,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(SelectCardActivity.this, "" + position,
+//                        Toast.LENGTH_SHORT).show();
                 if (cardHasBeenClicked) {
                     previousCard.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }

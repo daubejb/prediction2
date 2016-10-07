@@ -272,7 +272,9 @@ public class Prediction2Activity extends AppCompatActivity implements
         if (text.equals(KEYPHRASE))
             switchSearch(MENU_SEARCH);
         else
+        if (PreferenceManager.getDefaultSharedPreferences(this).getString("pref_training", "entryValues").equals("On")) {
             ((TextView) findViewById(R.id.result_text)).setText(text);
+        }
     }
 
     /**
