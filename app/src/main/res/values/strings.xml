@@ -11,4 +11,13 @@
     <string name="select_card_activity_title">Select your prediction</string>
     <string name="reset_prediction_textViewText">RESET PREDICTION</string>
     <string name="reveal_prediction_buttonText">REVEAL PREDICTION</string>
+    <string name="pref_training_title">Training mode is</string>
+    <string name="pref_training_summary">On</string>
+    <string name="pref_training_default">On</string>
+    <string name="action_instructions">Instructions</string>
+    <string name="action_settings">Settings</string>
+    <string name="effectTextViewText">EFFECT</string>
+    <string name="effect_description_textViewText">TBD written soon</string>
+    <string name="instructions_title">Instructions</string>
+    <string name="settings_title">Settings</string>
 </resources>

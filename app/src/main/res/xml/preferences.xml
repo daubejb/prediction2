@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="pref_training"
+        android:title="@string/pref_training_title"
+        android:summary="@string/pref_training_summary"
+        android:dialogTitle="@string/pref_training_title"
+        android:entries="@array/pref_training_entries"
+        android:entryValues="@array/pref_training_values"
+        android:defaultValue="@string/pref_training_default" />
+</PreferenceScreen>

@@ -42,6 +42,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -81,7 +83,7 @@ public class Prediction2Activity extends AppCompatActivity implements
     private static final String KWS_SEARCH = "wakeup";
     private static final String MENU_SEARCH = "menu";
     /* Keyword we are looking for to activate menu */
-    private static final String KEYPHRASE = "but you selected";
+    private static final String KEYPHRASE = "now why did you select";
     /* Used to handle permission request */
     private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
     private SpeechRecognizer recognizer;
@@ -176,6 +178,31 @@ public class Prediction2Activity extends AppCompatActivity implements
         runRecognizerSetup();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu prediction_menu) {
+        getMenuInflater().inflate(R.menu.prediction_menu, prediction_menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_instructions:
+                Intent instructionsIntent = new Intent(this, InstructionsActivity.class);
+                this.startActivity(instructionsIntent);
+                return true;
+            case R.id.action_settings:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                this.startActivity(settingsIntent);
+                return true;
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
     private void runRecognizerSetup() {
         // Recognizer initialization is a time-consuming and it involves IO,
         // so we execute it in async task
