@@ -38,6 +38,7 @@ import android.content.pm.PackageManager;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -282,7 +283,9 @@ public class Prediction2Activity extends AppCompatActivity implements
         ((TextView) findViewById(R.id.result_text)).setText("");
         if (hypothesis != null) {
             String text = hypothesis.getHypstr();
-            makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+            if (PreferenceManager.getDefaultSharedPreferences(this).getString("pref_training", "entryValues").equals("On")) {
+                makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+            }
 
 
             if (text.contains("ace") && text.contains("spades"))        { settings.edit().putInt("selectedCard", R.drawable.spades_a).commit(); cardHasBeenClicked = true; }
